@@ -50,7 +50,7 @@ public abstract class ActionBase {
 
     protected void forward(ForwardConst target)throws ServletException,IOException{
 
-        String forward = String.format("/WEB_INF/views/%s.jsp",target.getValue());
+        String forward = String.format("/WEB-INF/views/%s.jsp",target.getValue());
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 
         dispatcher.forward(request,response);
