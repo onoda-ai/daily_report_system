@@ -2,7 +2,7 @@ package constants;
 
 public interface JpaConst {
 
-    String PERSISTENCE_UNIT_NAME = "daili_report_system";
+    String PERSISTENCE_UNIT_NAME = "daily_report_system";
 
     int ROW_PER_PAGE =15;
 
