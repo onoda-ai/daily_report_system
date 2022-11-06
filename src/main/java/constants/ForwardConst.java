@@ -2,7 +2,7 @@ package constants;
 
 public enum ForwardConst {
 
-    ACT("actio"),
+    ACT("action"),
     ACT_TOP("Top"),
     ACT_EMP("Employee"),
     ACT_REP("Report"),
@@ -12,7 +12,7 @@ public enum ForwardConst {
     CMD_NONE(""),
     CMD_INDEX("index"),
     CMD_SHOW("show"),
-    CMD_SHOW_LOGIN("showlogin"),
+    CMD_SHOW_LOGIN("showLogin"),
     CMD_LOGIN("login"),
     CMD_LOGOUT("logout"),
     CMD_NEW("entryNew"),
@@ -39,7 +39,7 @@ public enum ForwardConst {
         this.text = text;
     }
 
-    public String getvalue() {
+    public String getValue() {
         return this.text;
     }
 

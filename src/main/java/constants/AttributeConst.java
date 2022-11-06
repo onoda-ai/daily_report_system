@@ -2,7 +2,7 @@ package constants;
 
 public enum AttributeConst {
 
-    Flush("flush"),
+    FLUSH("flush"),
 
     MAX_ROW("maxRow"),
     PAGE("page"),
@@ -52,7 +52,7 @@ public enum AttributeConst {
     public String getValue() {
         return this.text;
     }
-        public Integer getIntegerValue() {
-            return this.i;
-        }
+    public Integer getIntegerValue() {
+        return this.i;
+    }
 }
