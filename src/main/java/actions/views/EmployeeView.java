@@ -17,6 +17,8 @@ public class EmployeeView {
 
     private String code;
 
+    private String name;
+
     private String password;
 
     private Integer adminFlag;
