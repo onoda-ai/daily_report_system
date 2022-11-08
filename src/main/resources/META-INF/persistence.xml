@@ -8,7 +8,7 @@
 			<property name="javax.persistence.jdbc.user" value="repuser"/>
 			<property name="javax.persistence.jdbc.password" value="repuser"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
-			<property name="hibernate.dialect" value="hibernate.dialect"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
 		</properties>
