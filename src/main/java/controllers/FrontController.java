@@ -13,7 +13,7 @@ import actions.ActionBase;
 import actions.UnknownAction;
 import constants.ForwardConst;
 
-@WebServlet(name="FrontController", urlPatterns={"/"})
+@WebServlet("/")
 public class FrontController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class FrontController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ActionBase action = getAction(request,response);
-        action.init(getServletContext(),request,response);
+        action.init(getServletContext(), request, response);
         action.process();
     }
 

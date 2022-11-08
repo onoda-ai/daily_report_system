@@ -80,15 +80,20 @@ public class EmployeeService extends ServiceBase{
     public List<String> update(EmployeeView ev, String pepper){
 
         EmployeeView savedEmp = findOne(ev.getId());
+
         boolean validateCode = false;
         if (!savedEmp.getCode().equals(ev.getCode())){
+
             validateCode = true;
             savedEmp.setCode(ev.getCode());
-            }
+
+        }
 
         boolean validatePass = false;
         if (ev.getPassword() != null && !ev.getPassword().equals("")){
+
             validatePass = true;
+
             savedEmp.setPassword(
                     EncryptUtil.getPasswordEncrypt(ev.getPassword(), pepper));
 }
@@ -99,6 +104,7 @@ public class EmployeeService extends ServiceBase{
         savedEmp.setUpdatedAt(today);
 
         List<String> errors = EmployeeValidator.validate(this, savedEmp, validateCode, validatePass);
+
         if (errors.size() == 0){
             update(savedEmp);
             }
@@ -110,14 +116,17 @@ public class EmployeeService extends ServiceBase{
     public void destroy(Integer id){
 
         EmployeeView savedEmp = findOne(id);
+
         LocalDateTime today = LocalDateTime.now();
         savedEmp.setUpdatedAt(today);
+
         savedEmp.setDeleteFlag(JpaConst.EMP_DEL_TRUE);
+
         update(savedEmp);
 
     }
 
-    public boolean validateLogin(String code, String plainPass, String pepper){
+    public Boolean validateLogin(String code, String plainPass, String pepper){
 
         boolean isValidEmployee = false;
         if (code != null && !code.equals("") && plainPass != null && !plainPass.equals("")){
@@ -127,6 +136,7 @@ public class EmployeeService extends ServiceBase{
                 isValidEmployee = true;
              }
             }
+
         return isValidEmployee;
 
     }

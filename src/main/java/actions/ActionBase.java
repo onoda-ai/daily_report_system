@@ -48,15 +48,15 @@ public abstract class ActionBase {
         }
     }
 
-    protected void forward(ForwardConst target)throws ServletException,IOException{
+    protected void forward(ForwardConst target) throws ServletException,IOException{
 
-        String forward = String.format("/WEB-INF/views/%s.jsp",target.getValue());
+        String forward = String.format("/WEB-INF/views/%s.jsp", target.getValue());
         RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 
         dispatcher.forward(request,response);
     }
 
-    protected void redirect(ForwardConst action,ForwardConst command)throws ServletException,IOException{
+    protected void redirect(ForwardConst action,ForwardConst command) throws ServletException,IOException{
 
         String redirectUrl = request.getContextPath() + "/?action=" + action.getValue();
         if(command != null) {

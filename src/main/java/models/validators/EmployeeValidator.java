@@ -14,17 +14,17 @@ public class EmployeeValidator {
         List<String> errors = new ArrayList<String>();
 
     String codeError = validateCode(service, ev.getCode(), codeDuplicateCheckFlag);
-    if(!codeError.equals("")) {
+    if (!codeError.equals("")) {
         errors.add(codeError);
     }
 
     String nameError = validateName(ev.getName());
-    if(!nameError.equals("")){
+    if (!nameError.equals("")){
         errors.add(nameError);
     }
 
     String passError = validatePassword(ev.getPassword(), passwordCheckFlag);
-    if(!passError.equals("")) {
+    if (!passError.equals("")) {
         errors.add(passError);
     }
 
@@ -33,14 +33,14 @@ public class EmployeeValidator {
     }
 
     private static String validateCode(EmployeeService service, String code, Boolean codeDuplicateCheckFlag) {
-        if(code == null || code.equals("")) {
+        if (code == null || code.equals("")) {
             return MessageConst.E_NOEMP_CODE.getMessage();
         }
 
         if(codeDuplicateCheckFlag) {
             long employeesCount = isDuplicateEmployee(service, code);
 
-        if(employeesCount > 0) {
+        if (employeesCount > 0) {
             return MessageConst.E_EMP_CODE_EXIST.getMessage();
         }
        }
