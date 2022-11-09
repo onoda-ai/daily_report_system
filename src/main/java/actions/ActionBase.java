@@ -35,6 +35,7 @@ public abstract class ActionBase {
             throws ServletException,IOException{
         Method commandMethod;
         try {
+
             String command = request.getParameter(ForwardConst.CMD.getValue());
 
             commandMethod = this.getClass().getDeclaredMethod(command, new Class[0]);
