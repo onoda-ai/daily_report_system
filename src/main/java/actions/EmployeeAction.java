@@ -18,7 +18,7 @@ public class EmployeeAction extends ActionBase{
     private EmployeeService service;
 
     @Override
-    public void process() throws ServletException, IOException{
+    public void process() throws ServletException, IOException {
 
         service = new EmployeeService();
 
@@ -27,17 +27,17 @@ public class EmployeeAction extends ActionBase{
         service.close();
     }
 
-    public void index() throws ServletException, IOException{
+    public void index() throws ServletException, IOException {
 
-        int page = getPage();
-        List<EmployeeView> employees = service.getPerPage(page);
+            int page = getPage();
+            List<EmployeeView> employees = service.getPerPage(page);
 
-        long employeeCount = service.countAll();
+            long employeeCount = service.countAll();
 
-        putRequestScope(AttributeConst.EMPLOYEES, employees);
-        putRequestScope(AttributeConst.EMP_COUNT, employeeCount);
-        putRequestScope(AttributeConst.PAGE, page);
-        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
+            putRequestScope(AttributeConst.EMPLOYEES, employees);
+            putRequestScope(AttributeConst.EMP_COUNT, employeeCount);
+            putRequestScope(AttributeConst.PAGE, page);
+            putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
 
         String flush = getSessionScope(AttributeConst.FLUSH);
         if (flush != null) {
@@ -47,19 +47,19 @@ public class EmployeeAction extends ActionBase{
 
         forward(ForwardConst.FW_EMP_INDEX);
 
-   }
+        }
 
-    public void entryNew() throws ServletException, IOException{
 
-        putRequestScope(AttributeConst.TOKEN, getTokenId());
-        putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView());
+    public void entryNew() throws ServletException, IOException {
 
-        forward(ForwardConst.FW_EMP_NEW);
-    }
+            putRequestScope(AttributeConst.TOKEN, getTokenId());
+            putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView());
+
+            forward(ForwardConst.FW_EMP_NEW);
+
+        }
 
     public void create() throws ServletException, IOException{
-
-        if (checkToken()){
 
             EmployeeView ev = new EmployeeView(
                     null,
@@ -90,10 +90,8 @@ public class EmployeeAction extends ActionBase{
                 redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
 
             }
-
         }
 
-    }
 
     public void show() throws ServletException, IOException{
 
@@ -112,7 +110,7 @@ public class EmployeeAction extends ActionBase{
 
     }
 
-    public void edit() throws ServletException, IOException{
+    public void edit() throws ServletException, IOException {
 
         EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
@@ -168,6 +166,19 @@ public class EmployeeAction extends ActionBase{
 
     }
 
-}
+        public void destroy() throws ServletException, IOException {
 
+            if (checkToken()){
+
+                service.destroy(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+
+            }
+
+        }
+
+    }
 
