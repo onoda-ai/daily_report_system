@@ -12,7 +12,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
-import models.validators.ReportService;
+import services.ReportService;
 
 public class ReportAction extends ActionBase {
 
@@ -32,10 +32,10 @@ public class ReportAction extends ActionBase {
         int page = getPage();
         List<ReportView> reports = service.getAllPerPage(page);
 
-        long reportCount = service.countAll();
+        long reportsCount = service.countAll();
 
         putRequestScope(AttributeConst.REPORTS, reports);
-        putRequestScope(AttributeConst.REP_COUNT, reportCount);
+        putRequestScope(AttributeConst.REP_COUNT, reportsCount);
         putRequestScope(AttributeConst.PAGE, page);
         putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);
 

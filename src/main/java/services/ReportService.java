@@ -1,4 +1,4 @@
-package models.validators;
+package services;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,7 +9,7 @@ import actions.views.ReportConverter;
 import actions.views.ReportView;
 import constants.JpaConst;
 import models.Report;
-import services.ServiceBase;
+import models.validators.ReportValidator;
 
 public class ReportService extends ServiceBase {
 
