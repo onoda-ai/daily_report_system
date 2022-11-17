@@ -28,6 +28,10 @@
 <label for="${AttributeConst.REP_CONTENT.getValue()}">内容</label><br />
 <textarea name="${AttributeConst.REP_CONTENT.getValue()}" id="${AttributeConst.REP_CONTENT.getValue()}" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
+
+<label for="${AttributeConst.REP_PROGRESS.getValue()}">商談状況</label><br />
+<textarea name="${AttributeConst.REP_PROGRESS.getValue()}" id="${AttributeConst.REP_PROGRESS.getValue()}" rows="10" cols="50">${report.progress}</textarea>
+<br /><br />
 <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 <button type="submit">投稿</button>

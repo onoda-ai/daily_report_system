@@ -29,6 +29,7 @@ public interface JpaConst {
     String REP_COL_REP_DATE = "report_date";
     String REP_COL_TITLE = "title";
     String REP_COL_CONTENT = "content";
+    String REP_COL_PROGRESS = "progress";
     String REP_COL_CREATED_AT = "created_at";
     String REP_COL_UPDATED_AT = "updated_at";
 

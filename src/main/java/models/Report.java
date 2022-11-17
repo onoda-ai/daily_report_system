@@ -63,6 +63,11 @@ public class Report{
     @Column(name = JpaConst.REP_COL_CONTENT, nullable = false)
     private String content;
 
+    @Lob
+    @Column(name = JpaConst.REP_COL_PROGRESS)
+    private String progress;
+
+
     @Column(name = JpaConst.REP_COL_CREATED_AT, nullable = false)
     private LocalDateTime createdAt;
 

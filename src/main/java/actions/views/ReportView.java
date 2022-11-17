@@ -24,6 +24,8 @@ public class ReportView {
 
     private String content;
 
+    private String progress;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
