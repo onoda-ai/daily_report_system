@@ -36,7 +36,16 @@ public enum AttributeConst {
     REP_DATE("report_date"),
     REP_TITLE("title"),
     REP_CONTENT("content_msg"),
-    REP_PROGRESS("progress_msg");
+    REP_PROGRESS("progress_msg"),
+
+    CLIENT("client"),
+    CLIENTS("clients"),
+    CLI_COUNT("clients_count"),
+    CLI_ID("id"),
+    CLI_NAME("company_name"),
+
+    CLI_DEL_FLAG_TRUE(1),
+    CLI_DEL_FLAG_FALSE(0);
 
     private final String text;
     private final Integer i;

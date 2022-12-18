@@ -6,25 +6,30 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import actions.views.ClientView;
 import actions.views.EmployeeView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.ClientService;
 import services.ReportService;
 
 public class ReportAction extends ActionBase {
 
     private ReportService service;
+    private ClientService clservice;
 
     @Override
     public void process() throws ServletException, IOException {
 
         service = new ReportService();
+        clservice = new ClientService();
 
         invoke();
         service.close();
+        clservice.close();
     }
 
     public void index() throws ServletException, IOException {
@@ -50,11 +55,16 @@ public class ReportAction extends ActionBase {
 
     public void entryNew() throws ServletException, IOException {
 
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        List<ClientView> clients = clservice.getAllMine(ev);
+
+
         putRequestScope(AttributeConst.TOKEN, getTokenId());
 
         ReportView rv = new ReportView();
         rv.setReportDate(LocalDate.now());
         putRequestScope(AttributeConst.REPORT, rv);
+        putRequestScope(AttributeConst.CLIENTS, clients);
 
         forward(ForwardConst.FW_REP_NEW);
 
@@ -74,9 +84,15 @@ public class ReportAction extends ActionBase {
 
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
+            String companyName = getRequestParam(AttributeConst.CLI_NAME);
+            ClientView cv = clservice.findOne(Integer.parseInt(companyName));
+
+            List<ClientView> clients = clservice.getAllMine(ev);
+
             ReportView rv = new ReportView(
                     null,
                     ev,
+                    cv,
                     day,
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
@@ -90,6 +106,7 @@ public class ReportAction extends ActionBase {
 
                 putRequestScope(AttributeConst.TOKEN, getTokenId());
                 putRequestScope(AttributeConst.REPORT, rv);
+                putRequestScope(AttributeConst.CLIENTS, clients);
                 putRequestScope(AttributeConst.ERR, errors);
 
                 forward(ForwardConst.FW_REP_NEW);
@@ -124,6 +141,8 @@ public class ReportAction extends ActionBase {
 
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
+        List<ClientView> clients = clservice.getAllMine(ev);
+
         if (rv == null || ev.getId() != rv.getEmployee().getId()) {
             forward(ForwardConst.FW_ERR_UNKNOWN);
 
@@ -131,6 +150,7 @@ public class ReportAction extends ActionBase {
 
             putRequestScope(AttributeConst.TOKEN, getTokenId());
             putRequestScope(AttributeConst.REPORT, rv);
+            putRequestScope(AttributeConst.CLIENTS, clients);
 
             forward(ForwardConst.FW_REP_EDIT);
         }
@@ -142,10 +162,24 @@ public class ReportAction extends ActionBase {
 
             ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-            rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
+            //EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+            String companyName = getRequestParam(AttributeConst.CLI_NAME);
+            ClientView cv = clservice.findOne(Integer.parseInt(companyName));
+
+            //List<ClientView> clients = clservice.getAllMine(ev);
+
             rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
+            //System.out.println(getRequestParam(AttributeConst.REP_TITLE));
+
             rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
-            rv.setContent(getRequestParam(AttributeConst.REP_PROGRESS));
+            //System.out.println(getRequestParam(AttributeConst.REP_CONTENT));
+
+            rv.setProgress(getRequestParam(AttributeConst.REP_PROGRESS));
+            //System.out.println(getRequestParam(AttributeConst.REP_PROGRESS));
+
+            rv.setClient(cv);
+
 
             List<String> errors = service.update(rv);
 
@@ -153,6 +187,7 @@ public class ReportAction extends ActionBase {
 
                 putRequestScope(AttributeConst.TOKEN, getTokenId());
                 putRequestScope(AttributeConst.REPORT, rv);
+                //putRequestScope(AttributeConst.CLIENTS, clients);
                 putRequestScope(AttributeConst.ERR, errors);
 
                 forward(ForwardConst.FW_REP_EDIT);

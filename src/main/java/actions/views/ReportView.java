@@ -18,6 +18,8 @@ public class ReportView {
 
     private EmployeeView employee;
 
+    private ClientView client;
+
     private LocalDate reportDate;
 
     private String title;

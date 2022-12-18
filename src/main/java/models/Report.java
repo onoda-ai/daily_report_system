@@ -53,6 +53,10 @@ public class Report{
     @JoinColumn(name = JpaConst.REP_COL_EMP, nullable = false)
     private Employee employee;
 
+    @ManyToOne
+    @JoinColumn(name = JpaConst.REP_COL_CLI, nullable = false)
+    private Client client;
+
     @Column(name = JpaConst.REP_COL_REP_DATE, nullable = false)
     private LocalDate reportDate;
 

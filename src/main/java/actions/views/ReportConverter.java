@@ -11,6 +11,7 @@ public class ReportConverter {
         return new Report(
                 rv.getId(),
                 EmployeeConverter.toModel(rv.getEmployee()),
+                ClientConverter.toModel(rv.getClient()),
                 rv.getReportDate(),
                 rv.getTitle(),
                 rv.getContent(),
@@ -29,6 +30,7 @@ public class ReportConverter {
         return new ReportView(
                 r.getId(),
                 EmployeeConverter.toView(r.getEmployee()),
+                ClientConverter.toView(r.getClient()),
                 r.getReportDate(),
                 r.getTitle(),
                 r.getContent(),
@@ -50,10 +52,11 @@ public class ReportConverter {
     public static void copyViewToModel(Report r, ReportView rv) {
         r.setId(rv.getId());
         r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
+        r.setClient(ClientConverter.toModel(rv.getClient()));
         r.setReportDate(rv.getReportDate());
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());
-        r.setContent(rv.getProgress());
+        r.setProgress(rv.getProgress());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
 

@@ -54,6 +54,10 @@ public class ReportService extends ServiceBase {
 
     public List<String> create(ReportView rv) {
         List<String> errors = ReportValidator.validate(rv);
+
+        //rv.setClient(rv.getClient());
+        //rv.setProgress(rv.getProgress());
+
         if(errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             rv.setCreatedAt(ldt);
@@ -66,6 +70,11 @@ public class ReportService extends ServiceBase {
 
     public List<String> update(ReportView rv) {
         List<String> errors = ReportValidator.validate(rv);
+
+        //rv.setContent(rv.getContent());
+        //rv.setClient(rv.getClient());
+        //rv.setProgress(rv.getProgress());
+
         if(errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             rv.setUpdatedAt(ldt);

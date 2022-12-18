@@ -129,6 +129,7 @@ select {
 
 #header a {
     color: #eeeeee;
+
 }
 
 h1 a {
@@ -165,3 +166,25 @@ h3 {
     font-size: larger;
 }
 
+table#client_list th {
+    width: 30%;
+    padding: 10px 2%;
+}
+
+table#client_list td {
+    width: 29%;
+    padding: 10px 2%;
+}
+
+tr.row1 {
+        background-color: #f2f2f2;
+}
+tr.row0 {
+        background-color: #ffffff;
+}
+
+a:hover {
+  color: #005FFF;
+  font-size: 1.1em;
+  font-weight: bold;
+}

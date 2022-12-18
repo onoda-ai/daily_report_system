@@ -28,6 +28,10 @@
                     <td><pre><c:out value="${report.content}" /></pre></td>
                 </tr>
                 <tr>
+                    <th>顧客</th>
+                    <td><pre><c:out value="${report.client.name}" /></pre></td>
+                </tr>
+                <tr>
                     <th>商談状況</th>
                     <td><pre><c:out value="${report.progress}" /></pre></td>
                 </tr>

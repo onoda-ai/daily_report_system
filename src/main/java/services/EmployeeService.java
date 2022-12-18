@@ -47,6 +47,21 @@ public class EmployeeService extends ServiceBase{
 
     }
 
+    public EmployeeView findOne(String code){
+        Employee e = null;
+        try {
+
+            e = em.createNamedQuery(JpaConst.Q_EMP_GET_BY_CODE, Employee.class)
+                    .setParameter(JpaConst.JPQL_PARM_CODE, code)
+                    .getSingleResult();
+
+        } catch (NoResultException ex) {
+        }
+
+        return EmployeeConverter.toView(e);
+
+    }
+
     public EmployeeView findOne(int id){
         Employee e = findOneInternal(id);
         return EmployeeConverter.toView(e);

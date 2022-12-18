@@ -29,6 +29,14 @@
 <textarea name="${AttributeConst.REP_CONTENT.getValue()}" id="${AttributeConst.REP_CONTENT.getValue()}" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
 
+<label for="${AttributeConst.CLI_NAME.getValue()}">顧客</label><br />
+<select name="${AttributeConst.CLI_NAME.getValue()}">
+<c:forEach var="client" items="${clients}" varStatus="status">
+<option value="${client.id}" <c:if test="${client.employee.code == login_employee.code}"> selected</c:if>>${client.name}</option>
+</c:forEach>
+</select>
+<br /><br />
+
 <label for="${AttributeConst.REP_PROGRESS.getValue()}">商談状況</label><br />
 <textarea name="${AttributeConst.REP_PROGRESS.getValue()}" id="${AttributeConst.REP_PROGRESS.getValue()}" rows="10" cols="50">${report.progress}</textarea>
 <br /><br />
